@@ -1,9 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8sfr's Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="styles.css" rel="stylesheet">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+          --background: #0b0d0f;
+          --text-main: #7f95b2;
+          --text-secondary: #576a75;
+          --container-bg: #131a20;
+          --accent: #1968b2;
+          --animation: fadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        body {
+          background-color: var(--background);
+          color: var(--text-main);
+          font-family: "M PLUS 1p", sans-serif;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          background: none;
+          overflow: hidden;
+          margin: 0;
+        }
+
+        #background-video {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: -1;
+        }
+
+
+        @keyframes fadeUp {
+          0% {
+            opacity: 0;
+            transform: translateY(20px) scale(0.98);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        .container {
+          animation: var(--animation);
+          background-color: rgba(19, 20, 32, 0.85);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1px solid rgba(25, 109, 178, 0.3);
+          border-radius: 25px;
+          box-shadow: 0 0 25px rgba(0, 0, 0, 0.4), inset 0 0 25px rgba(25, 109, 178, 0.3);
+          padding: 40px;
+          max-width: 90vw;
+          width: 500px;
+          text-align: center;
+          position: relative;
+          z-index: 1;
+          box-sizing: border-box;
+        }
+
+        .container h1 {
+          animation: var(--animation);
+          animation-delay: 0.05s;
+          opacity: 0;
+          font-size: 36px;
+          font-weight: 600;
+          margin: 0 0 0.5em 0;
+          vertical-align: middle;
+          color: var(--text-main);
+        }
+
+        span {
+          color: var(--text-secondary);
+          font-size: 1rem;
+          font-weight: 600;
+        }
+
+        .avatar-wrapper {
+          display: inline-block;
+          padding: 4px;
+          border: 2px solid var(--accent);
+          border-radius: 100%;
+          box-sizing: border-box;
+          margin: 0 10px;
+          vertical-align: middle;
+        }
+
+        .avatar {
+          width: 86px;
+          height: 86px;
+          border-radius: 50%;
+          vertical-align: middle;
+        }
+
+        .name {
+          color: var(--accent);
+          font-size: 36px;
+          font-weight: 600;
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        #subtext {
+          margin-top: 1em;
+          opacity: 0;
+          animation: var(--animation);
+          animation-delay: 0.1s;
+        }
+
+        #cursor {
+          color: beige;
+          font-weight: 100;
+          animation: blink 1s steps(1, start) infinite;
+        }
+
+        @keyframes blink {
+          0% {
+            opacity: 100%;
+          }
+          50% {
+            opacity: 0%;
+          }
+        }
+
+        .socials {
+          margin-top: 1.5em;
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+        }
+
+        .social {
+          opacity: 0;
+          animation: fadeUp 0.3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+
+          color: var(--text-secondary);
+
+          font-size: 1.6rem;
+          text-decoration: none;
+          transition: all 0.25s ease-in-out;
+        }
+
+        .social:hover {
+          background-color: var(--accent);
+          color: var(--background);
+          transform: translateY(-3px);
+          box-shadow: 0 0 10px var(--accent);
+        }
+
+        .socials .social:nth-child(1) {
+          animation-delay: 0.15s;
+        }
+        .socials .social:nth-child(2) {
+          animation-delay: 0.2s;
+        }
+        .socials .social:nth-child(3) {
+          animation-delay: 0.25s;
+        }
+        .socials .social:nth-child(4) {
+          animation-delay: 0.3s;
+        }
+    </style>
 </head>
 <body>
     <video playsinline preload="auto" autoplay muted loop id="background-video" poster="assets/bg.jpg">
@@ -11,7 +184,7 @@
     </video>
     <div class="container">
         <h1>
-            Hello! I’m 
+            Hello! I’m
             <span class="avatar-wrapper">
                 <img src="assets/avatar.png" class="avatar" alt="Avatar">
             </span>
@@ -33,4 +206,43 @@
             </a>
         </div>
     </div>
+
+    <script>
+        function Sleep(ms) {
+            return new Promise((resolve) => setTimeout(resolve, ms));
+        }
+
+        const Skills = ["Graphic Designer", "Software Developer", "UI/UX Designer"];
+        const Element = document.getElementById("subtext");
+        let CurrentPhraseIndex = 0;
+
+        const WriteLoop = async () => {
+            while (true) {
+                let CurrentWord = Skills[CurrentPhraseIndex];
+
+                for (let i = 0; i < CurrentWord.length; i++) {
+                    Element.innerText = CurrentWord.substring(0, i + 1);
+                    await Sleep(75);
+                }
+
+                await Sleep(750);
+
+                for (let i = CurrentWord.length; i > 0; i--) {
+                    Element.innerText = CurrentWord.substring(0, i - 1);
+                    await Sleep(75);
+                }
+
+                await Sleep(750);
+
+                if (CurrentPhraseIndex === Skills.length - 1) {
+                    CurrentPhraseIndex = 0;
+                } else {
+                    CurrentPhraseIndex++;
+                }
+            }
+        }
+
+        WriteLoop();
+    </script>
 </body>
+</html>
